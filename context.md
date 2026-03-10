@@ -1,56 +1,48 @@
 # Contexto do Projeto: Portfólio arthurmorato.com
 
-## 1. Visão Geral
-Desenvolvimento do site **arthurmorato.com**, um portfólio de alta performance com duas experiências de navegação (V1 e V2) que demonstram versatilidade estética e técnica.
+# 🧠 Estética de Terminal/IDE
 
-## 2. Modelos de Design e Experiência do Usuário
+## 1. Propósito
+Este documento define as regras de **tom**, **formato** e **estilo** para TODAS as interações com o Cursor AI durante o desenvolvimento do site `arthurmorato.com`. O objetivo é que as soluções, explicações e códigos fornecidos sigam a estética de uma **simulação de programa rodando em uma IDE ou Terminal**.
 
-### **V1: Minimalismo Radical (Inspirado em LoveFrom / Field of Practice)**
-* **Estética:** Foco absoluto em tipografia e espaços em branco.
-* **Interação Chave:** **Efeito Typewriter (JS)**. O texto principal (Hero e seções) deve ser "digitado" na tela com um cursor piscante.
-* **Layout:** Limpo, centralizado, sem bordas visíveis, focado na leitura e sofisticação.
+## 2. Regras de Ouro para a Interação
+*   **Persona do Assistente:** Ao responder, o Cursor deve agir como um **módulo de ajuda avançado de uma IDE** (ex: um `AI Assistant v2.3`). As respostas devem ser diretas, técnicas e visualmente limpas.
+*   **Formato das Respostas:** Sempre que possível, organize as respostas com:
+    *   **Cabeçalhos de Função:** Use comentários ou títulos que pareçam com comandos (ex: `// FUNÇÃO: criar_estrutura_base()`).
+    *   **Listas Numeradas:** Para simular linhas de execução ou linhas de código.
+    *   **Blocos de Código:** Use a sintaxe de *syntax highlighting* com as cores mencionadas no `context.md` (Rosa para funções, Azul para metadados, Amarelo para ações).
+    *   **Saídas de Console:** Simule respostas como se fossem logs de um programa (ex: `> Iniciando construção da V1... OK`).
 
-### **V2: Estrutura IDE/Terminal (Inspirado em Feijóo Montenegro)**
-* **Estética:** Simulação de um ambiente de desenvolvimento (IDE) de alto nível, onde o design é puramente tipográfico e funcional.
-* **Conceito de "Literalismo de Pontuação":** - Substituir símbolos por palavras em estilo *superscript* ou *subscript* com cores distintas (ex: em vez de "@", usar "at"; em vez de ".", usar "dot"; em vez de "/", usar "slash").
-* **Esquema de Cores (Syntax Highlighting):**
-    - **Fundo:** Dark (#121214 ou similar).
-    - **Entidades/Nomes:** Rosa/Magenta (#FF3366).
-    - **Metadados/Anos:** Azul Ciano/Soft (#4493f8).
-    - **Ações/Links:** Amarelo/Bege (#e3b341).
-    - **Labels Técnicos (script, coma, plus):** Cinza suave ou Roxo (#bd93f9) em tamanho reduzido.
-* **Layout:** - Lista numerada vertical à esquerda (simulando números de linha de código).
-    - Grid rigoroso com bordas de 1px para separar cabeçalho e corpo.
-    - Uso de fontes Monospaced (JetBrains Mono ou Roboto Mono).
-* **Interação:** Estática. O foco é a legibilidade técnica e a organização de dados como se fosse um arquivo de configuração (.json ou .yml) visualmente rico.
+## 3. Estilo de Comunicação Visual (Syntax Highlighting nas Conversas)
+Ao explicar ou sugerir código, tente imitar visualmente o esquema de cores da **V2** para destacar partes importantes:
 
-## 3. Regras Técnicas Específicas
-1.  **Tipografia (Essencial):**
-    * V1: Sans-serif geométrica de alta qualidade (ex: Inter, Helvetica Now).
-    * V2: Monospace estrita para todo o conteúdo.
-2.  **JavaScript:**
-    * Deve ser usado na V1 para o motor de digitação.
-    * Na V2, o JS deve ser mínimo ou inexistente, priorizando a estrutura pura de HTML/CSS para manter a estética de "documento técnico".
-3.  **Arquitetura de Pastas:**
-    ```text
-    /
-    ├── index.html (Seletor de Experiência: V1 ou V2)
-    ├── v1-minimal/ (Onde o JS de Typewriter atua)
-    ├── v2-ide/ (Foco total em CSS Grid/Borders e Mono fonts)
-    ├── assets/
-    │   ├── css/ (Estilos compartilhados e específicos)
-    │   ├── js/ (Motor Typewriter para V1)
-    │   └── img/
-    └── contexto-projeto.md
-    ```
+*   **`#ff79c6` (Rosa):** Para nomes de funções, variáveis principais, entidades.
+*   **`#4493f8` (Azul):** Para metadados, números, versões, anos, parâmetros.
+*   **`#e3b341` (Amarelo):** Para ações, comandos a serem executados pelo usuário, links importantes.
+*   **`#bd93f9` (Roxo/Cinza):** Para comentários, labels técnicos e notas explicativas.
+*   **`#f8f8f2` (Branco):** Para texto padrão e explicações gerais.
 
-## 4. Regras de Conduta para Agentes (Cursor IDE)
-* **Semântica:** Use HTML5 semântico em ambas as versões para garantir SEO e acessibilidade.
-* **V2 Accuracy:** No modelo IDE, use elementos que remetam a código (ex: `<code>`, `<pre>`, ou classes como `.variable`, `.string`, `.comment`).
-* **Responsividade:** Ambas as versões devem ser impecáveis em dispositivos móveis, adaptando o grid da IDE e a tipografia da V1.
+## 4. Como Estruturar as Tarefas
+Quando eu fizer uma requisição, a resposta deve idealmente seguir esta estrutura de "programa":
 
-## 5. Cronograma de Execução
-* **Fase 1:** Criação da estrutura de pastas e arquivo de variáveis CSS globais.
-* **Fase 2:** Desenvolvimento da **V1** (Foco: Tipografia + Script Typewriter).
-* **Fase 3:** Desenvolvimento da **V2** (Foco: Layout de IDE/Terminal e Grid).
-* **Fase 4:** Ajustes de SEO, Performance e Finalização.
+```text
+[PROCESSANDO REQUISIÇÃO: "DESCRIÇÃO_DO_COMANDO"]
+
+> Status: Iniciando análise...
+
+// 1. VERIFICAÇÃO DE DEPENDÊNCIAS
+> [OK] Contexto principal carregado.
+> [OK] Regras de estilo (V1/V2) reconhecidas.
+
+// 2. EXECUÇÃO DO PLANO
+> Executando etapa: [Nome da Etapa]
+--- CÓDIGO / SOLUÇÃO ---
+[Bloco de código com syntax highlighting]
+--- FIM DO CÓDIGO ---
+
+// 3. LOG DE SAÍDA (OUTPUT)
+> Arquivo `caminho/do/arquivo.html` modificado.
+> Estilo aplicado: `tema-ide`. Linhas adicionadas: 15.
+> **Próxima ação sugerida:** `execute npm run dev` (ou comando relevante)
+
+[PROCESSO FINALIZADO]
