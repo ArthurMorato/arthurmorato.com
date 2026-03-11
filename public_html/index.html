@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arthur Morato - Portfólio Projects</title>
+    <meta name="description" content="Esse é o portfólio de projetos de Arthur Morato, desenvolvedor, programador, Java Specialist, Spring Boot, Linux Admin, DevOps, Web Developer, Python Developer, React Developer, Node.js Developer, Vue.js Developer, Angular Developer, React Native Developer and AI Architect, com a estética de terminal." />
+    <link rel="stylesheet" href="./stylesAlter.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <div class="terminal-root">
+      <header class="terminal-header">
+        <div class="terminal-lights">
+          <span class="light light-red"></span>
+          <span class="light light-yellow"></span>
+          <span class="light light-green"></span>
+        </div>
+        <div class="terminal-title">
+          root@arthurmorato.architect.ai:~ "Hello! I'm Human, but I'm a computer"
+        </div>
+        <div class="terminal-controls">
+          <button id="minimize" class="control-btn"><i class="fas fa-minus"></i></button>
+          <button id="maximize" class="control-btn"><i class="far fa-square"></i></button>
+          <button id="close" class="control-btn"><i class="fas fa-times"></i></button>
+        </div>
+      </header>
+
+      <main class="terminal-body" aria-label="janela de terminal simulada">
+        <div class="terminal-content">
+          <section class="terminal-log" id="terminalLog" aria-live="polite">
+            <div class="log-line">
+              <span class="log-prefix">[INITIALIZING]</span>
+              <span class="log-text">
+                Loading
+                <span class="log-accent">arthurmorato.com</span>
+                please wait...
+                <span class="log-muted">// v2.1.0</span>
+                ...
+              </span>
+            </div>
+            <div class="log-line">
+              <span class="log-prefix">[SUCCESS]</span>
+              <span class="log-text">
+                <span class="log-strong">Section initialized successfully</span>
+                <span class="log-muted">// as a guest</span>
+              </span>
+            </div>
+            <div class="log-line">
+              <span class="log-prefix">[INFO]</span>
+              <span class="log-text">
+                Loading modules:
+                <span class="log-keyword">portfolio</span>,
+                <span class="log-keyword">projects</span>,
+                <span class="log-keyword">contact</span>
+                <span class="log-keyword">etc...</span>
+              </span>
+            </div>
+            <div class="log-line">
+              <span class="log-prefix">[OK]</span>
+              <span class="log-text">
+                Try: <span class="log-command">about</span>, <span class="log-command">projects</span>, <span class="log-command">skills</span>, <span class="log-command">contact</span>, <span class="log-command">clear</span> or
+              </span>
+            </div>
+            <div class="log-line">
+              <span class="log-prefix">[OK]</span>
+              <span class="log-text">
+                Type <span class="log-command">exit</span> to leave the terminal 
+              </span>
+            </div>
+          </section>
+
+          <section class="terminal-input-section">
+            <form id="terminalForm" class="terminal-form">
+              <div class="terminal-input-group">
+                <span class="prompt">guest@guest:<span class="prompt-dir">~</span>#</span>
+                <input 
+                  type="text" 
+                  id="commandInput" 
+                  class="command-input" 
+                  autocomplete="off" 
+                  autofocus
+                  aria-label="Type a command"
+                  placeholder="Type a command (ex: contact)"
+                />
+                <span class="input-caret" aria-hidden="true"></span>
+              </div>
+              <button type="submit" class="submit-btn" aria-label="Execute the command">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+          </section>
+        </div>
+
+        <div class="terminal-footer">
+          <div class="footer-info">
+            <span class="footer-item">Terminal v2.1.0</span>
+            <span class="footer-item">•</span>
+            <span class="footer-item">Interactive Mode</span>
+            <span class="footer-item">•</span>
+            <span class="footer-item">Press <kbd>Tab</kbd> to autocomplete</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="./scriptAlter.js"></script>
+  </body>
+</html>

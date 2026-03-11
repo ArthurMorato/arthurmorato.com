@@ -20,9 +20,22 @@
 
   window.setInterval(toggleCaretVisibility, 520)
 
+  const heartbeatPhrases = [
+    'Think...',
+    'Drawing...',
+    'Creating...',
+    'Testing...',
+    'Deploying!',
+    'repeating...',
+  ]
+
+  let heartbeatPhraseIndex = 0
+
   const appendHeartbeatLog = () => {
+    const phrase = heartbeatPhrases[heartbeatPhraseIndex]
+
     const line = document.createElement('p')
-    line.className = 'log-line'
+    line.className = 'log-line log-line--heartbeat'
 
     const prefix = document.createElement('span')
     prefix.className = 'log-prefix'
@@ -30,11 +43,21 @@
 
     const text = document.createElement('span')
     text.className = 'log-text'
-    text.textContent = 'Heartbeat: UI ainda ativa.'
+    text.textContent = phrase
 
     line.appendChild(prefix)
     line.appendChild(text)
     logContainer.appendChild(line)
+
+    heartbeatPhraseIndex += 1
+
+    if (heartbeatPhraseIndex >= heartbeatPhrases.length) {
+      heartbeatPhraseIndex = 0
+      window.setTimeout(() => {
+        const heartbeatLines = logContainer.querySelectorAll('.log-line--heartbeat')
+        heartbeatLines.forEach((el) => el.remove())
+      }, 400)
+    }
   }
 
   window.setInterval(appendHeartbeatLog, 2000)

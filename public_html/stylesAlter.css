@@ -1,0 +1,460 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Courier New', 'Fira Code', 'Cascadia Code', monospace;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+  
+  /* Contêiner principal do terminal */
+  .terminal-root {
+    width: 100%;
+    max-width: 1000px;
+    background: #0f172a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Cabeçalho do terminal */
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    background: #1e293b;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+  }
+  
+  .terminal-lights {
+    display: flex;
+    gap: 8px;
+    margin-right: 20px;
+  }
+  
+  .light {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  
+  .light-red {
+    background: #ef4444;
+    box-shadow: 0 0 8px #ef4444;
+  }
+  
+  .light-yellow {
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+  }
+  
+  .light-green {
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+  
+  .light:hover {
+    transform: scale(1.2);
+  }
+  
+  .terminal-title {
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+  }
+  
+  .terminal-controls {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .control-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+  }
+  
+  #close:hover {
+    background: #ef4444;
+    color: white;
+  }
+  
+  /* Corpo do terminal */
+  .terminal-body {
+    padding: 0;
+    min-height: 500px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .terminal-content {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+    background: rgba(15, 23, 42, 0.95);
+  }
+  
+  /* Log do terminal */
+  .terminal-log {
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .log-line {
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    animation: slideIn 0.3s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .log-line:nth-child(1) { animation-delay: 0.1s; }
+  .log-line:nth-child(2) { animation-delay: 0.3s; }
+  .log-line:nth-child(3) { animation-delay: 0.5s; }
+  .log-line:nth-child(4) { animation-delay: 0.7s; }
+  .log-line:nth-child(5) { animation-delay: 0.9s; }
+  
+  .log-prefix {
+    font-weight: bold;
+    min-width: 80px;
+    text-align: right;
+  }
+  
+  .log-prefix::before {
+    content: '[';
+  }
+  
+  .log-prefix::after {
+    content: ']';
+  }
+  
+  [class*="log-"] {
+    font-family: inherit;
+  }
+  
+  .log-text {
+    flex: 1;
+    color: #e2e8f0;
+  }
+  
+  .log-accent {
+    color: #60a5fa;
+    font-weight: 600;
+  }
+  
+  .log-muted {
+    color: #94a3b8;
+    font-size: 0.9em;
+  }
+  
+  .log-strong {
+    color: #34d399;
+    font-weight: 600;
+  }
+  
+  .log-keyword {
+    color: #f472b6;
+    font-weight: 600;
+  }
+  
+  .log-command {
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+  
+  /* Seção de entrada */
+  .terminal-input-section {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+  }
+  
+  .terminal-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .terminal-input-group {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    transition: all 0.3s;
+  }
+  
+  .terminal-input-group:focus-within {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+  }
+  
+  .prompt {
+    color: #34d399;
+    font-weight: 600;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+  
+  .prompt-dir {
+    color: #60a5fa;
+  }
+  
+  .command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    caret-color: #60a5fa;
+    width: 100%;
+  }
+  
+  .command-input::placeholder {
+    color: #64748b;
+  }
+  
+  .input-caret {
+    position: absolute;
+    right: 14px;
+    width: 2px;
+    height: 20px;
+    background: #60a5fa;
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  .submit-btn {
+    background: #3b82f6;
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .submit-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Rodapé do terminal */
+  .terminal-footer {
+    background: #1e293b;
+    padding: 12px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+  
+  .footer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-item {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .footer-stats {
+    display: flex;
+    align-items: center;
+  }
+  
+  .stats-item {
+    padding: 4px 10px;
+    background: rgba(96, 165, 250, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+  }
+  
+  kbd {
+    background: #475569;
+    color: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    border: 1px solid #64748b;
+    margin: 0 2px;
+  }
+  
+  /* Estilos para saída de comandos */
+  .command-output {
+    margin: 15px 0;
+    padding-left: 88px;
+  }
+  
+  .output-line {
+    margin-bottom: 8px;
+    color: #cbd5e1;
+  }
+  
+  .output-title {
+    color: #60a5fa;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .output-list {
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+  .output-list li {
+    margin-bottom: 6px;
+    position: relative;
+  }
+  
+  .output-list li:before {
+    content: '›';
+    color: #34d399;
+    position: absolute;
+    left: -15px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+    
+    .terminal-root {
+      border-radius: 8px;
+    }
+    
+    .terminal-content {
+      padding: 15px;
+    }
+    
+    .terminal-footer {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+    
+    .footer-info {
+      justify-content: center;
+    }
+    
+    .log-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    
+    .log-prefix {
+      text-align: left;
+      min-width: auto;
+    }
+    
+    .command-output {
+      padding-left: 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .terminal-title {
+      font-size: 12px;
+      display: none;
+    }
+    
+    .prompt {
+      font-size: 14px;
+    }
+    
+    .command-input {
+      font-size: 14px;
+    }
+  }
+  
+  /* Scrollbar personalizada */
+  .terminal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .terminal-content::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.5);
+  }
+  
+  .terminal-content::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+  }
+  
+  .terminal-content::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+  
